@@ -11,6 +11,10 @@ export const itemsApi = createApi({
       query: () => '/items',
       providesTags: [{ type: 'Items', id: 'LIST' }],
     }),
+    getItem: builder.query<Item, number>({
+      query: (id) => `/items/${id}`,
+      providesTags: (result, error, id) => [{ type: 'Items', id }],
+    }),
     createItem: builder.mutation({
       query: (newItem) => ({
         url: '/items',
@@ -39,6 +43,7 @@ export const itemsApi = createApi({
 
 export const {
   useGetItemsQuery,
+  useGetItemQuery,
   useCreateItemMutation,
   useUpdateItemMutation,
   useDeleteItemMutation,
