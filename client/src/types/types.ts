@@ -4,6 +4,7 @@ type ItemBase = {
   description: string
   location: string
   type: 'Недвижимость' | 'Авто' | 'Услуги'
+  image?: string
 }
 
 export type ItemBaseInput = Omit<ItemBase, 'id'>
