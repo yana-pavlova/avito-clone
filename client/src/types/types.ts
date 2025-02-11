@@ -1,9 +1,11 @@
-type ItemBase = {
+export type ItemType = 'Недвижимость' | 'Авто' | 'Услуги'
+
+export type ItemBase = {
   id: number
   name: string
   description: string
   location: string
-  type: 'Недвижимость' | 'Авто' | 'Услуги'
+  type: ItemType
   image?: string
 }
 
@@ -16,7 +18,7 @@ type RealEstate = ItemBase & {
   rooms: number
   price: number
 }
-type RealEstateInput = Omit<RealEstate, 'id'>
+export type RealEstateInput = Omit<RealEstate, 'id'>
 
 type Car = ItemBase & {
   type: 'Авто'
@@ -25,7 +27,7 @@ type Car = ItemBase & {
   year: number
   mileage?: number
 }
-type CarInput = Omit<Car, 'id'>
+export type CarInput = Omit<Car, 'id'>
 
 type Service = ItemBase & {
   type: 'Услуги'
@@ -34,7 +36,7 @@ type Service = ItemBase & {
   cost: number
   workSchedule?: string
 }
-type ServiceInput = Omit<Service, 'id'>
+export type ServiceInput = Omit<Service, 'id'>
 
 export type Item = RealEstate | Car | Service
 export type ItemInput = RealEstateInput | CarInput | ServiceInput
