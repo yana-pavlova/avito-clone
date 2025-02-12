@@ -5,8 +5,8 @@ import { FIELD_LABELS, MOCK_IMAGE_URL } from '../../constants'
 type ItemUIProps = {
   data: Item
   deleteHandler: (e: React.MouseEvent) => void
-  editHandler: () => void
   pathName: string
+  editHandler?: () => void
   isFullView?: boolean
 }
 
