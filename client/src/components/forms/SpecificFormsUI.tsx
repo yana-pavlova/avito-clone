@@ -29,16 +29,38 @@ export const ApartmentForm = ({ handleChange, data }: ApartmentFormProps) => {
         >
           Тип недвижимости
         </label>
-        <input
-          type="text"
-          id="input-propertyType"
-          name="propertyType"
+        <select
           value={data?.propertyType || ''}
           onChange={handleChange}
-          required
-          autoFocus
+          id="input-propertyType"
+          name="propertyType"
           className="w-full px-3 py-2 border rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        />
+          autoFocus
+        >
+          <option value="" disabled>
+            Выберите тип недвижимости
+          </option>
+          <option value="apartment">Квартира</option>
+          <option value="house">Дом</option>
+          <option value="townhouse">Таунхаус</option>
+          <option value="duplex">Дуплекс</option>
+          <option value="loft">Лофт</option>
+          <option value="penthouse">Пентхаус</option>
+          <option value="studio">Студия</option>
+          <option value="apartments">Апартаменты</option>
+          <option value="room">Комната</option>
+          <option value="office">Офис</option>
+          <option value="retail">Торговое помещение</option>
+          <option value="warehouse">Склад</option>
+          <option value="industrial">Производственное помещение</option>
+          <option value="garage">Гараж</option>
+          <option value="parking">Паркинг</option>
+          <option value="land">Земельный участок</option>
+          <option value="hotel">Гостиница</option>
+          <option value="restaurant">Ресторан / кафе</option>
+          <option value="building">Здание целиком</option>
+          <option value="other">Другое</option>
+        </select>
       </div>
 
       <div>
@@ -114,8 +136,7 @@ export const CarForm = ({ handleChange, data }: CarFormProps) => {
         >
           Марка автомобиля
         </label>
-        <input
-          type="text"
+        <select
           id="input-brand"
           name="brand"
           value={data?.brand || ''}
@@ -123,7 +144,35 @@ export const CarForm = ({ handleChange, data }: CarFormProps) => {
           required
           autoFocus
           className="w-full px-3 py-2 border rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        />
+        >
+          <option value="" disabled>
+            Выберите марку автомобиля
+          </option>
+          <option value="audi">Audi</option>
+          <option value="bmw">BMW</option>
+          <option value="chevrolet">Chevrolet</option>
+          <option value="citroen">Citroën</option>
+          <option value="fiat">Fiat</option>
+          <option value="ford">Ford</option>
+          <option value="honda">Honda</option>
+          <option value="hyundai">Hyundai</option>
+          <option value="kia">Kia</option>
+          <option value="lexus">Lexus</option>
+          <option value="mazda">Mazda</option>
+          <option value="mercedes">Mercedes-Benz</option>
+          <option value="mitsubishi">Mitsubishi</option>
+          <option value="nissan">Nissan</option>
+          <option value="opel">Opel</option>
+          <option value="peugeot">Peugeot</option>
+          <option value="renault">Renault</option>
+          <option value="skoda">Škoda</option>
+          <option value="subaru">Subaru</option>
+          <option value="suzuki">Suzuki</option>
+          <option value="toyota">Toyota</option>
+          <option value="volkswagen">Volkswagen</option>
+          <option value="volvo">Volvo</option>
+          <option value="other">Другая</option>
+        </select>
       </div>
 
       <div>
@@ -196,8 +245,7 @@ export const ServiceForm = ({ handleChange, data }: ServiceFormProps) => {
         >
           Тип услуги
         </label>
-        <input
-          type="text"
+        <select
           id="input-serviceType"
           name="serviceType"
           value={data?.serviceType || ''}
@@ -205,7 +253,30 @@ export const ServiceForm = ({ handleChange, data }: ServiceFormProps) => {
           required
           autoFocus
           className="w-full px-3 py-2 border rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-        />
+        >
+          <option value="" disabled>
+            Выберите тип услуги
+          </option>
+          <option value="repair">Ремонт</option>
+          <option value="cleaning">Уборка</option>
+          <option value="delivery">Доставка</option>
+          <option value="moving">Переезд</option>
+          <option value="construction">Строительство</option>
+          <option value="plumbing">Сантехника</option>
+          <option value="electrical">Электрика</option>
+          <option value="painting">Покраска</option>
+          <option value="gardening">Ландшафтные работы</option>
+          <option value="it-services">IT-услуги</option>
+          <option value="tutoring">Обучение и репетиторство</option>
+          <option value="beauty">Косметология и уход</option>
+          <option value="fitness">Фитнес и тренировки</option>
+          <option value="legal">Юридические услуги</option>
+          <option value="accounting">Бухгалтерия</option>
+          <option value="marketing">Маркетинг и реклама</option>
+          <option value="event-planning">Организация мероприятий</option>
+          <option value="photography">Фотосъёмка</option>
+          <option value="other">Другое</option>
+        </select>
       </div>
 
       <div>
