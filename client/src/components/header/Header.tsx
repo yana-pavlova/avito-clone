@@ -14,6 +14,8 @@ export const Header = () => {
     (e: ChangeEvent<HTMLInputElement>) => {
       if (e.target.value.length > 3) {
         setSearchInput(e.target.value)
+      } else {
+        setSearchInput('')
       }
     },
     300
