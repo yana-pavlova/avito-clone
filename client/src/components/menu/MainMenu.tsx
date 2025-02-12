@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useDebounce } from '../../useDebounce'
 
 interface MainMenuProps {
@@ -9,9 +9,14 @@ interface MainMenuProps {
 
 export const MainMenu = ({ resetCategory, setSearchInput }: MainMenuProps) => {
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const location = useLocation()
+  const navigate = useNavigate()
+
   const debouncedSetSearchTerm = useDebounce(
     (e: ChangeEvent<HTMLInputElement>) => {
       if (e.target.value.length > 3) {
+        if (location.pathname.includes('item/')) navigate('/list')
         setSearchInput(e.target.value)
       } else {
         setSearchInput('')
