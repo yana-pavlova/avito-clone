@@ -1,13 +1,23 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useSearchContext } from '../../store/searchContext'
+import { useDebounce } from '../../useDebounce'
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
+  const { setSearchInput } = useSearchContext()
+
+  const debouncedSetSearchTerm = useDebounce(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setSearchInput(e.target.value)
+    },
+    300
+  )
 
   return (
     <header className="min-w-[320px] max-w-[2200px] mx-auto w-full bg-gray-900 text-white py-3 px-6 flex items-center justify-between">
       <button
-        className="hidden max-[450px]:block text-white"
+        className="hidden max-[767px]:block text-white"
         onClick={() => setMenuOpen(!menuOpen)}
       >
         <svg
@@ -27,7 +37,7 @@ export const Header = () => {
       </button>
 
       <nav
-        className={`absolute top-16 left-0 w-full bg-gray-900 min-[451px]:static min-[451px]:flex min-[451px]:gap-4 min-[451px]:w-auto ${
+        className={`absolute top-16 left-0 w-full bg-gray-900 min-[768px]:static min-[768px]:flex min-[768px]:gap-4 min-[768px]:w-auto items-center ${
           menuOpen ? 'flex flex-col items-center gap-2 py-4' : 'hidden'
         }`}
       >
@@ -37,6 +47,14 @@ export const Header = () => {
         <Link to="/list" className="hover:text-gray-400">
           Каталог
         </Link>
+        <form className="flex items-center gap-2 bg-gray-800 px-3 py-1 rounded-md">
+          <input
+            type="text"
+            placeholder="Поиск..."
+            className="bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md px-2 py-1 w-30 min-[600px]:w-40"
+            onChange={debouncedSetSearchTerm}
+          />
+        </form>
       </nav>
 
       <Link

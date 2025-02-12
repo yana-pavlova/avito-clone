@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useDeleteItemMutation, useGetItemQuery } from '../../store/itemsApi'
 import { NotFoundPage } from '../NotFoundPage/NotFoundPage'
 import { ItemUI } from '../../components/item/ItemUI'
-import { useEditContext } from '../../store/context'
+import { useEditContext } from '../../store/editContext'
 import { FormPage } from '../FormPage/FormPage'
 
 export const ItemPage = () => {

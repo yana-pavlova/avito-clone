@@ -1,30 +1,37 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useDeleteItemMutation, useGetItemsQuery } from '../../store/itemsApi'
 import { Item } from '../../types/types'
 import { ItemUI } from '../../components/item/ItemUI'
+import { useSearchContext } from '../../store/searchContext'
 
 export const ListPage = () => {
   const [deleteItem] = useDeleteItemMutation()
   const { data: items, error, isLoading } = useGetItemsQuery()
   const [currentPage, setCurrentPage] = useState(1)
-  const itemsPerPage = 5
-  const totalPages = items ? Math.ceil(items.length / itemsPerPage) : 1
+
   const handleDelete = useCallback(
     (id: number) => () => deleteItem(id),
     [deleteItem]
   )
 
-  const editHandler = () => {
-    console.log('edit')
-  }
+  const { searchInput } = useSearchContext()
 
-  if (isLoading) return <p>Создание объявления...</p>
-  if (error) return <p>Ошибка при создании</p>
+  const filteredItems =
+    items?.filter((el) => {
+      return el.name.toLowerCase().includes(searchInput.toLowerCase().trim())
+    }) || []
+  const itemsPerPage = 5
+  const totalPages = items?.length
+    ? Math.ceil(filteredItems.length / itemsPerPage)
+    : 1
 
-  const displayedItems = items?.slice(
+  const displayedItems = filteredItems?.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   )
+
+  if (isLoading) return <p>загружаем данные...</p>
+  if (error) return <p>Ошибка при получении данных с сервера</p>
 
   return (
     <div className="w-full mt-6 mb-4 px-4 flex flex-col flex-grow gap-4">
@@ -34,7 +41,6 @@ export const ListPage = () => {
             <ItemUI
               data={item}
               deleteHandler={handleDelete(item.id)}
-              editHandler={editHandler}
               pathName={`/item/${item.id}`}
             />
           </article>

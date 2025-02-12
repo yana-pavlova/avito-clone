@@ -16,7 +16,7 @@ import {
   useCreateItemMutation,
   useUpdateItemMutation,
 } from '../../store/itemsApi'
-import { useEditContext } from '../../store/context'
+import { useEditContext } from '../../store/editContext'
 import { normalizeSpaces } from '../../utils'
 import { useNavigate } from 'react-router-dom'
 
