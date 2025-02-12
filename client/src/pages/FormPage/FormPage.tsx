@@ -17,6 +17,7 @@ import {
   useUpdateItemMutation,
 } from '../../store/itemsApi'
 import { useEditContext } from '../../store/context'
+import { normalizeSpaces } from '../../utils'
 
 export const FormPage = () => {
   const [createItem] = useCreateItemMutation()
@@ -62,7 +63,10 @@ export const FormPage = () => {
       | ChangeEvent<HTMLSelectElement>
       | ChangeEvent<HTMLTextAreaElement>
   ) => {
-    setData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    setData((prev) => ({
+      ...prev,
+      [e.target.name]: normalizeSpaces(e.target.value),
+    }))
   }
 
   return (

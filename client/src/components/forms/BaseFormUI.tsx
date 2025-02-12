@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react'
 import { ItemBase } from '../../types/types'
+import { setErrorTextAndNumberRequiredInput, resetError } from '../../utils'
 
 type BaseFormProps = {
   handleChange: (
@@ -27,6 +28,9 @@ export const BaseForm = ({ handleChange, data }: BaseFormProps) => {
           autoFocus
           onChange={handleChange}
           placeholder="Продам квартиру"
+          pattern="[A-Za-zА-Яа-я0-9]+"
+          onInvalid={setErrorTextAndNumberRequiredInput}
+          onInput={resetError}
           className="w-full px-3 py-2 border rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
         />
       </div>
@@ -47,6 +51,7 @@ export const BaseForm = ({ handleChange, data }: BaseFormProps) => {
           placeholder="Скажите несколько слов о том, что вы продаёте"
           className="w-full px-3 py-2 border rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none resize-y min-h-[100px]"
           rows={3}
+          minLength={20}
         />
       </div>
 
@@ -62,6 +67,7 @@ export const BaseForm = ({ handleChange, data }: BaseFormProps) => {
           id="input-location"
           name="location"
           value={data?.location || ''}
+          minLength={5}
           required
           onChange={handleChange}
           placeholder="Метро Кутузовская"
@@ -98,7 +104,7 @@ export const BaseForm = ({ handleChange, data }: BaseFormProps) => {
           Приложите ссылку на фотографию
         </label>
         <input
-          type="text"
+          type="url"
           id="input-image"
           name="image"
           value={data?.image || ''}
