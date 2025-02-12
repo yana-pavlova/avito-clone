@@ -5,7 +5,7 @@ interface SearchContextType {
   searchInput: string
   setSearchInput: (term: string) => void
   searchCategory: ItemType | null
-  setSearchCategory: (term: ItemType) => void
+  setSearchCategory: (term: ItemType | null) => void
 }
 
 const SearchContext = createContext<SearchContextType | null>(null)

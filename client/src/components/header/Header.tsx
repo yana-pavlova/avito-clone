@@ -31,6 +31,12 @@ export const Header = () => {
     }
   }
 
+  const resetCategory = () => {
+    const category = null
+    setActiveCategory(category)
+    setSearchCategory(category)
+  }
+
   return (
     <header className="min-w-[320px] max-w-[2200px] mx-auto w-full">
       <div className="w-full bg-gray-900 text-white py-3 px-6 flex items-center justify-between">
@@ -59,10 +65,11 @@ export const Header = () => {
             menuOpen ? 'flex flex-col items-center gap-2 py-4' : 'hidden'
           }`}
         >
-          <Link to="/" className="hover:text-gray-400">
-            На главную
-          </Link>
-          <Link to="/list" className="hover:text-gray-400">
+          <Link
+            to="/list"
+            onClick={resetCategory}
+            className="hover:text-gray-400"
+          >
             Каталог
           </Link>
           <form className="flex items-center gap-2 bg-gray-800 px-3 py-1 rounded-md">
