@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useDebounce } from '../../useDebounce'
 
@@ -9,6 +9,7 @@ interface MainMenuProps {
 
 export const MainMenu = ({ resetCategory, setSearchInput }: MainMenuProps) => {
   const [menuOpen, setMenuOpen] = useState(false)
+  const inputRef = useRef<HTMLInputElement | null>(null)
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -24,6 +25,23 @@ export const MainMenu = ({ resetCategory, setSearchInput }: MainMenuProps) => {
     },
     300
   )
+
+  const resetSearchInputGlobal = () => {
+    setSearchInput('')
+    resetLocalInputValue()
+  }
+
+  const resetAnySearch = () => {
+    resetCategory()
+    resetSearchInputGlobal()
+    resetLocalInputValue()
+  }
+
+  const resetLocalInputValue = () => {
+    if (inputRef.current) {
+      inputRef.current.value = ''
+    }
+  }
 
   return (
     <div className="w-full bg-gray-900 text-white py-3 px-6 flex items-center justify-between">
@@ -54,13 +72,14 @@ export const MainMenu = ({ resetCategory, setSearchInput }: MainMenuProps) => {
       >
         <Link
           to="/list"
-          onClick={resetCategory}
+          onClick={resetAnySearch}
           className="hover:text-gray-400"
         >
           Каталог
         </Link>
         <form className="flex items-center gap-2 bg-gray-800 px-3 py-1 rounded-md">
           <input
+            ref={inputRef}
             type="text"
             placeholder="Поиск..."
             className="bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md px-2 py-1 w-30 min-[600px]:w-40"
@@ -77,7 +96,4 @@ export const MainMenu = ({ resetCategory, setSearchInput }: MainMenuProps) => {
       </Link>
     </div>
   )
-}
-function setSearchInput(value: string) {
-  throw new Error('Function not implemented.')
 }
