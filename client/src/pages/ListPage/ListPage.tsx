@@ -6,15 +6,23 @@ import { useSearchContext } from '../../store/searchContext'
 
 export const ListPage = () => {
   const [currentPage, setCurrentPage] = useState(1)
+  const [filteredItems, setFilteredItems] = useState<Item[]>([])
 
   const { data: items, error, isLoading } = useGetItemsQuery()
+  const { searchInput, searchCategory } = useSearchContext()
 
-  const { searchInput } = useSearchContext()
-
-  const filteredItems =
-    items?.filter((el) => {
-      return el.name.toLowerCase().includes(searchInput.toLowerCase().trim())
-    }) || []
+  useEffect(() => {
+    let newFilteredItems =
+      items?.filter((el) => {
+        return el.name.toLowerCase().includes(searchInput.toLowerCase().trim())
+      }) || []
+    if (searchCategory) {
+      newFilteredItems = newFilteredItems.filter((el) => {
+        return el.type.toLowerCase() === searchCategory.toLowerCase()
+      })
+    }
+    setFilteredItems(newFilteredItems)
+  }, [items, searchInput, searchCategory])
 
   const itemsPerPage = 5
   const totalPages = filteredItems.length
