@@ -18,6 +18,7 @@ import {
 } from '../../store/itemsApi'
 import { useEditContext } from '../../store/context'
 import { normalizeSpaces } from '../../utils'
+import { useNavigate } from 'react-router-dom'
 
 export const FormPage = () => {
   const [createItem] = useCreateItemMutation()
@@ -25,6 +26,7 @@ export const FormPage = () => {
   const [updateItem] = useUpdateItemMutation()
   const [data, setData] = useState<Partial<Item>>({ type: 'Недвижимость' })
   const [isSecondStep, setIsSecondStep] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (isEditing && editItem) {
@@ -48,11 +50,13 @@ export const FormPage = () => {
       handleNext()
     } else {
       if (isEditing) {
-        await updateItem(data)
+        const response = await updateItem(data)
         setIsEditing(false)
         setEditItem(null)
+        response.data.id && navigate(`/item/${response.data.id}`)
       } else {
-        await createItem(data)
+        const response = await createItem(data)
+        response.data.id && navigate(`/item/${response.data.id}`)
       }
     }
   }
