@@ -74,7 +74,7 @@ export const BaseForm = ({ handleChange, data }: BaseFormProps) => {
           htmlFor="select-type"
           className="block text-gray-700 font-medium"
         >
-          Тип объявления
+          Категория
         </label>
         <select
           id="select-type"
