@@ -4,8 +4,8 @@ import { FIELD_LABELS, MOCK_IMAGE_URL } from '../../constants'
 
 type ItemUIProps = {
   data: Item
-  deleteHandler: (e: React.MouseEvent) => void
   pathName: string
+  deleteHandler?: (e: React.MouseEvent) => void
   editHandler?: () => void
   isFullView?: boolean
 }
@@ -75,7 +75,7 @@ export const ItemUI = ({
               Редактировать
             </button>
             <button
-              onClick={(e) => deleteHandler(e)}
+              onClick={deleteHandler}
               className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition"
             >
               Удалить
