@@ -6,7 +6,7 @@ import { useEditContext } from '../../store/editContext'
 import { FormPage } from '../FormPage/FormPage'
 
 export const ItemPage = () => {
-  const { isEditing, setIsEditing, editItem, setEditItem } = useEditContext()
+  const { isEditing, setIsEditing, setEditItem } = useEditContext()
   const id = Number(useParams().id)
   const navigate = useNavigate()
   const { data: item, error, isLoading } = useGetItemQuery(id)

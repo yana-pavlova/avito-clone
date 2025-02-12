@@ -1,7 +1,5 @@
-import { ChangeEvent, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import { useSearchContext } from '../../store/searchContext'
-import { useDebounce } from '../../useDebounce'
 import { ItemType } from '../../types/types'
 import { MainMenu } from '../menu/MainMenu'
 import { ExtraMenu } from '../menu/ExtraMenu'
