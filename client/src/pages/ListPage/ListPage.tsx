@@ -1,18 +1,13 @@
-import { useCallback, useState } from 'react'
-import { useDeleteItemMutation, useGetItemsQuery } from '../../store/itemsApi'
+import { useEffect, useState } from 'react'
+import { useGetItemsQuery } from '../../store/itemsApi'
 import { Item } from '../../types/types'
 import { ItemUI } from '../../components/item/ItemUI'
 import { useSearchContext } from '../../store/searchContext'
 
 export const ListPage = () => {
-  const [deleteItem] = useDeleteItemMutation()
-  const { data: items, error, isLoading } = useGetItemsQuery()
   const [currentPage, setCurrentPage] = useState(1)
 
-  const handleDelete = useCallback(
-    (id: number) => () => deleteItem(id),
-    [deleteItem]
-  )
+  const { data: items, error, isLoading } = useGetItemsQuery()
 
   const { searchInput } = useSearchContext()
 
@@ -20,15 +15,20 @@ export const ListPage = () => {
     items?.filter((el) => {
       return el.name.toLowerCase().includes(searchInput.toLowerCase().trim())
     }) || []
+
   const itemsPerPage = 5
-  const totalPages = items?.length
+  const totalPages = filteredItems.length
     ? Math.ceil(filteredItems.length / itemsPerPage)
     : 1
 
-  const displayedItems = filteredItems?.slice(
+  const displayedItems = filteredItems.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   )
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [totalPages])
 
   if (isLoading) return <p>загружаем данные...</p>
   if (error) return <p>Ошибка при получении данных с сервера</p>
@@ -38,11 +38,7 @@ export const ListPage = () => {
       <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 auto-rows-fr">
         {displayedItems?.map((item: Item) => (
           <article key={item.id} className="h-full flex flex-col">
-            <ItemUI
-              data={item}
-              deleteHandler={handleDelete(item.id)}
-              pathName={`/item/${item.id}`}
-            />
+            <ItemUI data={item} pathName={`/item/${item.id}`} />
           </article>
         ))}
       </div>
