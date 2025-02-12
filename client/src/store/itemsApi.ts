@@ -29,7 +29,10 @@ export const itemsApi = createApi({
         method: 'PUT',
         body: updatedItem,
       }),
-      invalidatesTags: [{ type: 'Items', id: 'LIST' }],
+      invalidatesTags: (result, error, { id }) => [
+        { type: 'Items', id },
+        { type: 'Items', id: 'LIST' },
+      ],
     }),
     deleteItem: builder.mutation({
       query: (id) => ({
