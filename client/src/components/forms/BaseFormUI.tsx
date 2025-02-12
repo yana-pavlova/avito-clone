@@ -67,7 +67,7 @@ export const BaseForm = ({ handleChange, data }: BaseFormProps) => {
           id="input-location"
           name="location"
           value={data?.location || ''}
-          minLength={5}
+          minLength={1}
           required
           onChange={handleChange}
           placeholder="Метро Кутузовская"
