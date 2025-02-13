@@ -81,6 +81,7 @@ export const MainMenu = ({
       </nav>
 
       <Link
+        onClick={resetAnySearch}
         to="/form"
         className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 min-[451px]:mt-0 ml-auto"
       >
