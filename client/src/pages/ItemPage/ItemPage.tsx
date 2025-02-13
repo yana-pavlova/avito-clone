@@ -5,6 +5,7 @@ import { ItemUI } from '../../components/item/ItemUI'
 import { useEditContext } from '../../store/editContext'
 import { FormPage } from '../FormPage/FormPage'
 import { useEffect } from 'react'
+import { BackButton } from '../../components/back-button/BackButton'
 
 export const ItemPage = () => {
   const { isEditing, setIsEditing, setEditItem } = useEditContext()
@@ -40,12 +41,15 @@ export const ItemPage = () => {
   return isEditing ? (
     <FormPage />
   ) : (
-    <ItemUI
-      data={item}
-      deleteHandler={handleDelete}
-      editHandler={editHandler}
-      pathName={`/item/${item.id}`}
-      isFullView={true}
-    />
+    <>
+      <ItemUI
+        data={item}
+        deleteHandler={handleDelete}
+        editHandler={editHandler}
+        pathName={`/item/${item.id}`}
+        isFullView={true}
+      />
+      <BackButton onClick={() => navigate(-1)} />
+    </>
   )
 }
