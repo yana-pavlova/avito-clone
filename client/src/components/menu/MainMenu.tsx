@@ -1,4 +1,4 @@
-import { ChangeEvent, useRef, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 interface MainMenuProps {
@@ -14,6 +14,19 @@ export const MainMenu = ({
 }: MainMenuProps) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const inputRef = useRef<HTMLInputElement | null>(null)
+
+  const handleResize = () => {
+    if (window.innerWidth >= 768) {
+      setMenuOpen(false)
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   const resetSearchInputGlobal = () => {
     setSearchInput('')
