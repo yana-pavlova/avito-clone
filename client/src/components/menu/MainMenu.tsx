@@ -77,7 +77,10 @@ export const MainMenu = ({ resetCategory, setSearchInput }: MainMenuProps) => {
         >
           Каталог
         </Link>
-        <form className="flex items-center gap-2 bg-gray-800 px-3 py-1 rounded-md">
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className="flex items-center gap-2 bg-gray-800 px-3 py-1 rounded-md"
+        >
           <input
             ref={inputRef}
             type="text"
