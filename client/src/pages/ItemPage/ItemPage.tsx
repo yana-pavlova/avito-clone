@@ -4,6 +4,7 @@ import { NotFoundPage } from '../NotFoundPage/NotFoundPage'
 import { ItemUI } from '../../components/item/ItemUI'
 import { useEditContext } from '../../store/editContext'
 import { FormPage } from '../FormPage/FormPage'
+import { useEffect } from 'react'
 
 export const ItemPage = () => {
   const { isEditing, setIsEditing, setEditItem } = useEditContext()
@@ -11,6 +12,10 @@ export const ItemPage = () => {
   const navigate = useNavigate()
   const { data: item, error, isLoading } = useGetItemQuery(id)
   const [deleteItem] = useDeleteItemMutation()
+
+  useEffect(() => {
+    setIsEditing(false)
+  }, [])
 
   if (isLoading) return <p>Загрузка...</p>
   if (error || !item) return <NotFoundPage />
@@ -23,7 +28,6 @@ export const ItemPage = () => {
   const editHandler = () => {
     setIsEditing(true)
     setEditItem(item)
-    console.log('edit')
   }
 
   return isEditing ? (
