@@ -1,6 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const dotenv = require('dotenv')
+
+dotenv.config();
 
 const ItemTypes = {
   REAL_ESTATE: 'Недвижимость',
@@ -14,6 +17,7 @@ app.use(bodyParser.json())
 
 // In-memory хранилище для объявлений
 let items = []
+// let items = require('../private/mock-data.json')
 
 const makeCounter = () => {
   let count = 0

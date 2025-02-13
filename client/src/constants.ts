@@ -1,4 +1,8 @@
-export const API_URL = process.env.REACT_APP_API_URL
+// export const API_URL = process.env.REACT_APP_API_URL
+export const API_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : process.env.REACT_APP_API_URL
 
 export const FIELD_LABELS: Record<string, string> = {
   description: 'Описание',

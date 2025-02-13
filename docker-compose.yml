@@ -1,0 +1,22 @@
+services:
+  client:
+    build: ./client
+    ports:
+      - "5050:5050"
+    volumes:
+      - ./client:/app
+    depends_on:
+      - server
+    env_file:
+      - ./client/.env
+    restart: always
+
+  server:
+    build: ./api
+    ports:
+      - "${PORT:-3000}:${PORT:-3000}"
+    volumes:
+      - ./api:/app
+    env_file:
+      - ./api/.env
+
