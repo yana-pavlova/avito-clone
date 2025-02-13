@@ -2,24 +2,37 @@
 
 ### Using docker
 #### Run all
-```docker compose up --build```
+```
+docker compose up --build
+```
 
 #### Stop all
-```docker compose down``
+```
+docker compose down
+```
 
 #### Run only server
-```docker compose up server --build```
+```
+docker compose up server --build
+```
+
 Will be on `http://localhost:3000/`
 
 #### Stop only server
-```docker compose down```
+```
+docker compose down
+```
 
 #### Run only client
-```docker compose up client --build```
-Will be on `http://localhost:5050/`
+```
+docker compose up client --build
+```
+The app will be on `http://localhost:5050/`
 
 #### Stop only client
-```docker compose stop client```
+```
+docker compose stop client
+```
 
 ### On localhost
 
@@ -37,12 +50,12 @@ npm i
 npm run start
 ```
 
-Then open `localhost:5050`
+The app will be on `localhost:5050`
 
 ## Stack
 - Typescript
 - React
 - Redux
-- RTK Query
+- RTK Query (for easy work with redux storage)
 - Tailwind (for quick & modern styling)
 - Lodash (for deeply comparing objects; only one module imported)
