@@ -11,11 +11,18 @@ export const ItemPage = () => {
   const id = Number(useParams().id)
   const navigate = useNavigate()
   const { data: item, error, isLoading } = useGetItemQuery(id)
+  const { refetch } = useGetItemQuery(id, { skip: isEditing })
   const [deleteItem] = useDeleteItemMutation()
 
   useEffect(() => {
     setIsEditing(false)
   }, [])
+
+  useEffect(() => {
+    if (!isEditing) {
+      refetch()
+    }
+  }, [isEditing])
 
   if (isLoading) return <p>Загрузка...</p>
   if (error || !item) return <NotFoundPage />
