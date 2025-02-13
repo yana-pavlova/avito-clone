@@ -20,7 +20,7 @@ Will be on `http://localhost:3000/`
 
 #### Stop only server
 ```
-docker compose down
+docker compose stop server
 ```
 
 #### Run only client
