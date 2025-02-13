@@ -26,6 +26,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { LOCAL_STORAGE_KEY_FORM_DRAFT } from '../../constants'
 import isEqual from 'lodash/isEqual'
+import { BackButton } from '../../components/back-button/BackButton'
 
 export const FormPage = () => {
   const [createItem] = useCreateItemMutation()
@@ -115,6 +116,7 @@ export const FormPage = () => {
       )}
       {isSecondStep && (
         <>
+          <BackButton onClick={() => setIsSecondStep(false)} />
           <div className="space-y-4">
             {(() => {
               switch (data?.type) {
