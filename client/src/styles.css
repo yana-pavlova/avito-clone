@@ -1,6 +1,5 @@
 @import "tailwindcss";
-@layer base {
-  html {
-    @apply text-base md:text-lg lg:text-xl;
-  }
+
+html {
+  @apply text-base md:text-lg lg:text-xl;
 }
