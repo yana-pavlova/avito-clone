@@ -15,3 +15,16 @@ export const setErrorTextAndNumberRequiredInput = (
 
 export const resetError = (e: ChangeEvent<HTMLInputElement>) =>
   e.target.setCustomValidity('')
+
+export const saveDataInLocalStorage = (name: string, data: object) => {
+  localStorage.setItem(name, JSON.stringify(data))
+}
+
+export const getDataFromLocalStorage = (name: string) => {
+  const res = localStorage.getItem(name)
+  if (res) return JSON.parse(res)
+}
+
+export const removeDataFromLocalStorage = (name: string) => {
+  localStorage.removeItem(name)
+}

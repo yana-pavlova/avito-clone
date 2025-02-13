@@ -17,16 +17,37 @@ import {
   useUpdateItemMutation,
 } from '../../store/itemsApi'
 import { useEditContext } from '../../store/editContext'
-import { normalizeSpaces } from '../../utils'
+import {
+  normalizeSpaces,
+  getDataFromLocalStorage,
+  saveDataInLocalStorage,
+  removeDataFromLocalStorage,
+} from '../../utils'
 import { useNavigate } from 'react-router-dom'
+import { LOCAL_STORAGE_KEY_FORM_DRAFT } from '../../constants'
+import isEqual from 'lodash/isEqual'
 
 export const FormPage = () => {
   const [createItem] = useCreateItemMutation()
   const { isEditing, setIsEditing, editItem, setEditItem } = useEditContext()
   const [updateItem] = useUpdateItemMutation()
-  const [data, setData] = useState<Partial<Item>>({ type: 'Недвижимость' })
+  const [data, setData] = useState<Partial<Item>>(() => {
+    return (
+      getDataFromLocalStorage(LOCAL_STORAGE_KEY_FORM_DRAFT) || {
+        type: 'Недвижимость',
+      }
+    )
+  })
   const [isSecondStep, setIsSecondStep] = useState(false)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (isEditing && isEqual(editItem, data)) {
+      setEditItem(null)
+      return
+    }
+    saveDataInLocalStorage(LOCAL_STORAGE_KEY_FORM_DRAFT, data)
+  }, [data])
 
   useEffect(() => {
     if (isEditing && editItem) {
@@ -58,6 +79,7 @@ export const FormPage = () => {
         const response = await createItem(data)
         response.data.id && navigate(`/item/${response.data.id}`)
       }
+      removeDataFromLocalStorage(LOCAL_STORAGE_KEY_FORM_DRAFT)
     }
   }
 

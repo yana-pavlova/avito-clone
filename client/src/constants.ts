@@ -20,3 +20,5 @@ export const FIELD_LABELS: Record<string, string> = {
 
 export const MOCK_IMAGE_URL =
   'https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Glossary.svg'
+
+export const LOCAL_STORAGE_KEY_FORM_DRAFT = 'form-draft'
