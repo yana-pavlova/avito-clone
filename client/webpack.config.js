@@ -61,7 +61,13 @@ module.exports = {
       template: './public/index.html',
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: 'src/images/favicon.ico', to: 'favicon.ico' }],
+      patterns: [
+        { from: 'src/images/favicon.ico', to: 'favicon.ico' },
+        {
+          from: 'src/images/image-placeholder.jpg',
+          to: 'image-placeholder.jpg',
+        },
+      ],
     }),
   ],
   resolve: {
