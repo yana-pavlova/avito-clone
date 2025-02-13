@@ -16,7 +16,11 @@ export const Header = () => {
     const target = e.target as HTMLSpanElement
 
     if (target) {
-      if (location.pathname.includes('item/')) navigate('/list')
+      if (
+        location.pathname.includes('item/') ||
+        location.pathname.includes('form')
+      )
+        navigate('/list')
       const category = (target.dataset.category as ItemType) || null
       setActiveCategory(category)
       setSearchCategory(category)
