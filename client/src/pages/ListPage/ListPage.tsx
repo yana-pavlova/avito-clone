@@ -55,7 +55,7 @@ export const ListPage = () => {
         <button
           disabled={currentPage === 1}
           onClick={() => setCurrentPage(1)}
-          className="px-3 py-1 text-sm border rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-200"
+          className="px-3 py-1 text-sm border rounded bg-gray-200 hover:bg-gray-300 cursor-pointer disabled:opacity-50 disabled:cursor-default disabled:hover:bg-gray-200"
         >
           &lt;&lt;
         </button>
@@ -63,8 +63,7 @@ export const ListPage = () => {
         <button
           disabled={currentPage === 1}
           onClick={() => setCurrentPage(currentPage - 1)}
-          className="px-3 py-1 text-sm border rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-200"
-          style={{ cursor: 'pointer' }}
+          className="px-3 py-1 text-sm border rounded bg-gray-200 hover:bg-gray-300 cursor-pointer disabled:opacity-50 disabled:cursor-default disabled:hover:bg-gray-200"
         >
           &lt;
         </button>
@@ -76,7 +75,7 @@ export const ListPage = () => {
         <button
           disabled={currentPage === totalPages}
           onClick={() => setCurrentPage(currentPage + 1)}
-          className="px-3 py-1 text-sm border rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-200"
+          className="px-3 py-1 text-sm border rounded bg-gray-200 hover:bg-gray-300 cursor-pointer disabled:opacity-50 disabled:cursor-default disabled:hover:bg-gray-200"
         >
           &gt;
         </button>
@@ -84,7 +83,7 @@ export const ListPage = () => {
         <button
           disabled={currentPage === totalPages}
           onClick={() => setCurrentPage(totalPages)}
-          className="px-3 py-1 text-sm border rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-200"
+          className="px-3 py-1 text-sm border rounded bg-gray-200 hover:bg-gray-300 cursor-pointer disabled:opacity-50 disabled:cursor-default disabled:hover:bg-gray-200"
         >
           &gt;&gt;
         </button>

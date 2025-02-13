@@ -35,7 +35,7 @@ export const MainMenu = ({
   return (
     <div className="w-full bg-gray-900 text-white py-3 px-6 flex items-center justify-between">
       <button
-        className="hidden max-[767px]:block text-white"
+        className="hidden max-[767px]:block text-white cursor-pointer"
         onClick={() => setMenuOpen(!menuOpen)}
       >
         <svg
