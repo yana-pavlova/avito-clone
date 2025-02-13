@@ -1,30 +1,19 @@
 import { ChangeEvent, useRef, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { useDebounce } from '../../useDebounce'
+import { Link } from 'react-router-dom'
 
 interface MainMenuProps {
   setSearchInput: (term: string) => void
   resetCategory: () => void
+  searchHandler: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const MainMenu = ({ resetCategory, setSearchInput }: MainMenuProps) => {
+export const MainMenu = ({
+  resetCategory,
+  setSearchInput,
+  searchHandler,
+}: MainMenuProps) => {
   const [menuOpen, setMenuOpen] = useState(false)
   const inputRef = useRef<HTMLInputElement | null>(null)
-
-  const location = useLocation()
-  const navigate = useNavigate()
-
-  const debouncedSetSearchTerm = useDebounce(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      if (e.target.value.length > 3) {
-        if (location.pathname.includes('item/')) navigate('/list')
-        setSearchInput(e.target.value)
-      } else {
-        setSearchInput('')
-      }
-    },
-    300
-  )
 
   const resetSearchInputGlobal = () => {
     setSearchInput('')
@@ -86,7 +75,7 @@ export const MainMenu = ({ resetCategory, setSearchInput }: MainMenuProps) => {
             type="text"
             placeholder="Поиск..."
             className="bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-md px-2 py-1 w-30 min-[600px]:w-40"
-            onChange={debouncedSetSearchTerm}
+            onChange={searchHandler}
           />
         </form>
       </nav>
