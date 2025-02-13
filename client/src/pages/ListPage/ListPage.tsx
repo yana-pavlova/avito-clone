@@ -45,7 +45,7 @@ export const ListPage = () => {
     <div className="w-full mt-6 mb-4 px-4 flex flex-col flex-grow gap-4">
       <div className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 auto-rows-fr">
         {displayedItems?.map((item: Item) => (
-          <article key={item.id} className="h-full flex flex-col max-w-[400px]">
+          <article key={item.id} className="h-full flex flex-col max-w-[530px]">
             <ItemUI data={item} pathName={`/item/${item.id}`} />
           </article>
         ))}
