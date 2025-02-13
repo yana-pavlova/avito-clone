@@ -70,16 +70,18 @@ export const FormPage = () => {
     if (!isSecondStep) {
       handleNext()
     } else {
+      let response
       if (isEditing) {
-        const response = await updateItem(data)
+        response = await updateItem(data)
         setIsEditing(false)
         setEditItem(null)
-        response.data.id && navigate(`/item/${response.data.id}`)
       } else {
-        const response = await createItem(data)
-        response.data.id && navigate(`/item/${response.data.id}`)
+        response = await createItem(data)
       }
       removeDataFromLocalStorage(LOCAL_STORAGE_KEY_FORM_DRAFT)
+      if (response.data.id !== undefined) {
+        navigate(`/item/${response.data.id}`)
+      }
     }
   }
 
