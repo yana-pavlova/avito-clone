@@ -18,7 +18,7 @@ app.use(bodyParser.json())
 // In-memory хранилище для объявлений
 let items = []
 // сomment out the line above ⬆ and uncomment the line below ⬇ to run server on mock data
-// let items = require('../mocks/mock-data.json')
+// let items = require('./mocks/mock-data.json')
 
 const makeCounter = () => {
   let count = items.length
