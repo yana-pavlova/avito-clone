@@ -49,7 +49,7 @@ export const ItemPage = () => {
         pathName={`/item/${item.id}`}
         isFullView={true}
       />
-      <BackButton onClick={() => navigate(-1)} />
+      <BackButton onClick={() => navigate('/list')} />
     </>
   )
 }
