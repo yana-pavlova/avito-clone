@@ -46,7 +46,7 @@ export const Header = () => {
   }
 
   return (
-    <header className="min-w-[320px] max-w-[2200px] mx-auto w-full">
+    <header className="min-w-[320px] max-w-[2200px] mx-auto w-full pb-20">
       <MainMenu
         setSearchInput={setSearchInput}
         resetCategory={resetCategory}
