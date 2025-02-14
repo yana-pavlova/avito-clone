@@ -72,13 +72,6 @@ export const MainMenu = ({
           menuOpen ? 'flex flex-col items-center gap-2 py-4' : 'hidden'
         }`}
       >
-        <Link
-          to="/list"
-          onClick={resetAnySearch}
-          className="hover:text-gray-400"
-        >
-          Каталог
-        </Link>
         <form
           onSubmit={(e) => e.preventDefault()}
           className="flex items-center gap-2 bg-gray-800 px-3 py-1 rounded-md"
