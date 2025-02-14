@@ -52,3 +52,5 @@ Then restart the project.
 > WHY: A lightweight framework for quickly building modern, responsive, and aesthetically pleasing UI.
 - **Lodash**
 > WHY: Used for deep object comparison to prevent unnecessary re-renders; only the isEqual module is imported.
+
+This wep application works on 133.0.6943.53/54 Google Chrome Desktop version.
