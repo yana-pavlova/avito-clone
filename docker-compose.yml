@@ -3,9 +3,6 @@ services:
     build: ./client
     ports:
       - "5050:5050"
-    volumes:
-      - ./client:/app
-      - /app/node_modules
     depends_on:
       - server
     env_file:
@@ -15,10 +12,7 @@ services:
   server:
     build: ./api
     ports:
-      - "${PORT:-3000}:${PORT:-3000}"
-    volumes:
-      - ./api:/app
-      - /app/node_modules
+      - "3000:3000"
     env_file:
       - ./api/.env
     restart: always
